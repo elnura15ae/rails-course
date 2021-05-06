@@ -1,0 +1,24 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "rails_course_development@localhost",
+            "database": "rails_course_development",
+            "username": "postgres",
+            "password": ""
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "rails_course_test@localhost",
+            "database": "rails_course_test",
+            "username": "postgres",
+            "password": ""
+        }
+    ]
+}
