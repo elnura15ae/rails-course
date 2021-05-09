@@ -1,3 +1,4 @@
 class Position < ApplicationRecord
-    drop_table :carts_items
+    belongs_to :cart
+    belongs_to :item 
 end
