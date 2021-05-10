@@ -1,1 +1,1 @@
-SELECT * from positions
+SELECT * from comments

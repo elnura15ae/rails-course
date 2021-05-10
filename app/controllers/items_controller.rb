@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-    
-    layout false
     skip_before_action :verify_authenticity_token
     before_action :find_item, only: %i[show edit update destroy upvote]
     before_action :admin?, only: %i[edit]
@@ -53,16 +51,12 @@ class ItemsController < ApplicationController
 
     private
     def items_params
-        params.permit( :name, :price)
+        params.permit( :name, :price, :description)
     end
 
     def find_item
         @item = Item.where(id: params[:id]).first
         render_404 unless @item
-    end
-
-    def admin?
-        render_403 unless params[:admin]
     end
 
     def show_info
