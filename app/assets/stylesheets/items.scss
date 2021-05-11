@@ -2,3 +2,9 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+.my_table, tr, th {
+  border: 1px solid black;
+  padding: 4px;
+  margin: 4px;
+  background: #dadada;
+}
