@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
     after_action :show_info, only: %i[index] 
 
     def index
-        @items =  Item 
+        @items =  Item
         @items = @items.where('price >= ?', params[:price_from])       if params[:price_from]
         @items = @items.where('created_at >= ?', 1.day.ago)            if params[:today_at]
         @items = @items.where('votes_count >= ?', params[:votes_from]) if params[:votes_from]
@@ -17,8 +17,8 @@ class ItemsController < ApplicationController
     end
 
     def create
-        item = Item.create(items_params)
-        if item.persisted?
+        @items = Item.create(items_params)
+        if @items.persisted?
             flash[:success] = "Item was saved"
             redirect_to items_path
         else 
@@ -27,9 +27,11 @@ class ItemsController < ApplicationController
         end
     end
     
-    #def new; end
+    def new
+        @items = Item.new
+    end
 
-    #def show; end
+    def show; end
 
     #def edit; end
 
@@ -65,7 +67,7 @@ class ItemsController < ApplicationController
 
     private
     def items_params
-        params.permit( :name, :price, :description)
+        params.require(:item).permit(:name, :price, :description)
     end
 
     def find_item
