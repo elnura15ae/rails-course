@@ -15,10 +15,12 @@ Things you may want to cover:
 
 * Database initialization
 
-* How to run the test suite
+* How to run the test suite: bundle exec rspec 
+                             bundle exec rspec spec/models/item_spec.rb
+                             bundle exec rspec spec
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
 
-* ...
+* 
