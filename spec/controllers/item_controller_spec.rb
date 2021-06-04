@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rails-controller-testing'
 require 'pry'
-# frozen_string_literal: true
+#frozen_string_literal: true
 
 RSpec.describe ItemsController, type: :controller do 
     render_views 
@@ -47,7 +47,7 @@ RSpec.describe ItemsController, type: :controller do
                 { item: {price: -20} }
             end
             it 'doesnt save' do 
-                expect{subject}
+                expect{subject}.to_not change(Item, :count)
             end 
 
             it 'render new templete' do 
@@ -57,17 +57,16 @@ RSpec.describe ItemsController, type: :controller do
     end
 
 
-    context 'DELETE #destroy' do
-        subject {delete :destroy, params: params}
-        let(:params) { { id: item.id } }
-        end 
+    # context 'DELETE #destroy' do
+    #     subject {delete :destroy}
+    #     let(:params) { { id: item.id } }
+    #     end 
 
-        it 'deletes from Item' do
-            item.reload
-            expect{ subject }.to change(Item, :count).by(-1)
-        end 
-       
-        it 'redirect index templete' do
-          redirect_to action: :index
-        end 
+    #     it 'deletes from Item' do
+    #     item.reload
+    #     expect{ subject }.to change(Item, :count).by(-1)
+    #     end 
+    #     it 'redirect index templete' do
+    #       redirect_to action: :index
+    #     end 
 end
