@@ -5,19 +5,19 @@ class ItemsController < ApplicationController
     after_action :show_info, only: %i[index] 
 
     def index
-        @items = Item.all.order(:id).includes(:image)
-        # @items = @items.where('price >= ?', params[:price_from])       if params[:price_from]
-        # @items = @items.where('created_at >= ?', 1.day.ago)            if params[:today_at]
-        # @items = @items.where('votes_count >= ?', params[:votes_from]) if params[:votes_from]
-        # @items = @items.order(:id)
-        # @items = @items.includes(:image)
+        @items = Item.all.order(:id).includes :image
+       # @items = @items.where('price >= ?', params[:price_from])       if params[:price_from]
+        #@items = @items.where('created_at >= ?', 1.day.ago)            if params[:today_at]
+        #@items = @items.where('votes_count >= ?', params[:votes_from]) if params[:votes_from]
+        #@items = @items.order(:id)
+        #@items = @items.includes(:image)
         # @items= Item.all.order('votes_count DESC','price').limit 10
-        # @items= Item.where('price >= ?', params[:price_from])
+        #@items= Item.where('price >= ?', params[:price_from])
     end
 
     def create
-        @item = Item.create(items_params)
-        if @item.persisted?
+       @items = Item.create(items_params)
+        if @items.persisted?
             flash[:success] = "Item was saved"
             redirect_to items_path
         else 
@@ -27,36 +27,35 @@ class ItemsController < ApplicationController
     end
     
     def new
-        @items = Item.new
+        @items= Item.new
     end
-
-    def show; end
-
-    #def edit; end
+     def show; end
+     def edit; end
 
     def update 
-      if @item.update(items_params)
+    if @items.update(items_params)
         flash[:success] = "Item was successfully updated"
-        redirect_to item_path
+        redirect_to items_path
       else 
-        flash.now[:error] = "Item wasn't updated"
+        flash.now[:error] = "Please fill all fields correctly"
         render json: item.errors, status: :unprocessable_entity
       end 
     end
 
     def destroy 
-        if @item.delete.destroyed?
+        if @items.delete.destroyed?
             flash[:success] = "Item was deleted"
+            render json: { success: true }
             redirect_to items_path
         else 
             flash[:error] = "Item wasn't deleted"
-            render json: @item.errors, status: :unprocessable_entity
+            render json: item.errors, status: :unprocessable_entity
         end
     end
 
     def upvote
-    @item.increment! :votes_count
-    redirect_to item_path
+    @items.increment! :votes_count
+    redirect_to items_path
     end
 
     def expensive
@@ -70,7 +69,7 @@ class ItemsController < ApplicationController
     end
 
     def find_item
-        @item = Item.where(id: params[:id]).first
+        @items = Item.where(id: params[:id]).first
         render_404 unless @item
     end
 
