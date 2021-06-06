@@ -1,8 +1,10 @@
 class ItemsController < ApplicationController
+    before_action :authenticate_user!
     skip_before_action :verify_authenticity_token
     before_action :find_item, only: %i[show edit update destroy upvote]
     before_action :admin?, only: %i[edit]
     after_action :show_info, only: %i[index]
+    
 
     def index
         @item = Item.all.order(:id)
@@ -45,7 +47,7 @@ class ItemsController < ApplicationController
     def destroy 
         if @item.delete.destroyed?
             flash[:success] = "Item was deleted"
-            # render json: { success: true }
+            #render json: { success: true }
             redirect_to items_path
         else 
             flash[:error] = "Item wasn't deleted"

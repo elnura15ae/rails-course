@@ -57,16 +57,16 @@ RSpec.describe ItemsController, type: :controller do
     end
 
 
-    # context 'DELETE #destroy' do
-    #     subject {delete :destroy}
-    #     let(:params) { { id: item.id } }
-    #     end 
+     #context 'DELETE #destroy' do
+      #  subject {:destroy}
+      #   let(:params) { { id: item.id } }
+      #  end 
 
-    #     it 'deletes from Item' do
-    #     item.reload
-    #     expect{ subject }.to change(Item, :count).by(-1)
-    #     end 
-    #     it 'redirect index templete' do
-    #       redirect_to action: :index
-    #     end 
+       #  it 'deletes from Item' do
+       #  redirect_to action: :index
+       # expect{subject}.to change(Item, :count).by(-1)
+       #  end 
+       # it 'redirect index templete' do
+       #  redirect_to action: :index
+       # end 
 end

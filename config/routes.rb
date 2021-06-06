@@ -2,6 +2,8 @@
 
 Rails.application.routes.draw do
 
+  devise_for :users
+  resources :users
   get '/admin/users_count', to: 'admin#users_count'
   resources :items do
     get :upvote, on: :member

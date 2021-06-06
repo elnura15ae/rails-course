@@ -1,3 +1,5 @@
+<h1>Hi there!!! </h1>
+<%= button_to "Logout", destroy_user_session_path, method: :delete %>
 <h2 style= "color: red; margine: 0 auto">Items</h2> <br/>
 <% if @item.empty? %>
 <h3 style= "color: #B00100; margine: 0 auto">No items</h3> <br/>
@@ -19,14 +21,14 @@
 
 <% @item.each do |item| %>
 <tbody>
-    <tr data-toggle="<%= item.id %>">
-        <th scope = "col"><%= item.id %></th>
+    <tr data-item_id="<%= item.id %>">
+        <th scope = "col" ><%= item.id %></th>
         <th scope = "col"><%= link_to item.name.camelize, item_path(item), class: "text-info" %></th>
         <th scope = "col"><%= item.price %></th>
         <th scope = "col"><%=item.description %></th>
         <th scope = "col"><%= item.votes_count %> &nbsp; <%= link_to '+', upvote_item_path(item), class: "text-info" %></th>
         <th scope = "col"><%= !item.image.nil? ? image_tag(item.image.file, width: '30px', height: '30px') : 'no img' %></th>
-        <th scope = "col"><%= button_to 'delete', item_path(item), method: :delete, class: "deleteAction" %></th>
+        <th scope = "col" class= "deleteAction"><%= button_to 'delete', item_path(item), method: :delete %></th>
     </tr>
     </tbody>
 <% end %> 
